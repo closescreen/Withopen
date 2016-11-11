@@ -1,4 +1,7 @@
 module Withopen
+
+export withopen
+
 """
 withopen(`zcat a.gz`, `viatmp -gz c.gz` ) do rio,wio
                rio|>eachline|> ll->foreach(ll) do l
