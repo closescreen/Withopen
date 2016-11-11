@@ -1,5 +1,19 @@
 module Withopen
+"""
+withopen(`zcat a.gz`, `viatmp -gz c.gz` ) do rio,wio
+               rio|>eachline|> ll->foreach(ll) do l
+                  chomp(l)|>_->"=\$_=\n"|> _->print(wio, _)
+               end
 
-# package code goes here
+end
+"""
+function withopen(func::Function, readcmd::Cmd, writecmd::Cmd)
+    open(readcmd) do rio
+        open(writecmd,"w") do wio
+             func(rio,wio)
+        end
+    end
+end
+  
 
 end # module
